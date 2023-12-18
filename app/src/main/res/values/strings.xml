@@ -6,4 +6,9 @@
     <string name="empty">Empty</string>
     <string name="start">Start</string>
     <string name="introduce">Introduce</string>
+    <string name="heart_fragment">Heart Fragment</string>
+    <string name="hello_from_messages_fragment">Hello from Messages Fragment</string>
+    <string name="messages">Messages</string>
+    <string name="heart">Heart</string>
+    <string name="home">Home</string>
 </resources>

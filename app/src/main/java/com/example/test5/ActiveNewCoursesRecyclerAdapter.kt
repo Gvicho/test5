@@ -1,5 +1,7 @@
 package com.example.test5
 
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.test5.databinding.CourseItemBinding
 import com.example.test5.databinding.RecyclerItemBinding
 
@@ -41,8 +44,51 @@ class ActiveNewCoursesRecyclerAdapter() : ListAdapter<CourseData, RecyclerView.V
     inner class CourseViewHolder(private val binding: CourseItemBinding):RecyclerView.ViewHolder(binding.root){
 
         fun bind(courses: Courses){
-            courses.title?.let {
-                binding.tvTitle.text = it
+            // Set the image
+            Glide.with(itemView.context)
+                .load(courses.image)
+                .into(binding.imageViewIcon)
+
+            // Set the title and booking time
+            binding.textViewTitle.text = courses.title
+            binding.textViewBookingTime.text = "Booked for ${courses.bookingTime}"
+
+            // Set the progress on the progress bar
+            binding.circularProgressBar.progress = courses.progress ?: 0
+
+            // Parse the main background color
+            val backgroundColor = courses.mainColor?.let { parseColor(it) } ?: Color.RED // Default color if parsing fails
+
+            // Convert the opacity from 0-100 to 0-255 scale
+            val backgroundAlpha = (courses.backgroundColorPresent?.let { it/100.0 * 255.0 } ?: 255).toInt().coerceIn(0, 255)
+
+            // Apply the background color and opacity
+            val backgroundDrawable = GradientDrawable().apply {
+                shape = GradientDrawable.RECTANGLE
+                cornerRadius = 35f // Replace with your actual radius
+                setColor(backgroundColor)
+                alpha = backgroundAlpha // Set the alpha/opacity
+            }
+            binding.root.background = backgroundDrawable
+
+            // Safely parse the play button color and set it
+            courses.playButtonColorPresent?.let { colorString ->
+                val buttonColor = parseColor(colorString)
+                val playButtonDrawable = GradientDrawable().apply {
+                    shape = GradientDrawable.OVAL
+                    setColor(buttonColor)
+                }
+                binding.playButton.background = playButtonDrawable
+            }
+        }
+
+        private fun parseColor(colorString: String): Int {
+            val formattedColorString = if (!colorString.startsWith("#")) "#$colorString" else colorString
+            return try {
+                Color.parseColor(formattedColorString)
+            } catch (e: IllegalArgumentException) {
+                Log.e("Adapter", "Invalid color string: $formattedColorString", e)
+                Color.RED // Fallback color in case of error
             }
         }
 

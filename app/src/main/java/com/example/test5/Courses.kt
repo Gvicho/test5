@@ -19,9 +19,11 @@ data class Courses(@Json(name = "id")
                    @Json(name = "progress")
                    val progress:Int? = -1,
                    @Json(name = "background_color_present")
-                   val backgroundColorPresent:Int? = -1,
+                   val backgroundColorPresent:Int? = 0,
                    @Json(name = "play_button_color_present")
-                   val playButtonColorPresent:Int? = -1) {
+                   val playButtonColorPresent:String? = "",
+                   @Json(name = "image")
+                   val image:String? = "") {
 
     private var iconType: IconType = IconType.EMPTY
 

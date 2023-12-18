@@ -1,6 +1,7 @@
 package com.example.test5
 
 import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -52,8 +53,15 @@ class NewCoursesRecyclerAdapter : ListAdapter<Courses, RecyclerView.ViewHolder>(
                 colorString?.let {
                     try {
                         val color = Color.parseColor("#$colorString")
-                        // Set the background color of your item view
-                        root1.setBackgroundColor(color)
+                        // Create a GradientDrawable with rounded corners
+                        val drawable = GradientDrawable().apply {
+                            shape = GradientDrawable.RECTANGLE
+                            cornerRadius = 65f
+                            setColor(color)
+                        }
+
+
+                        binding.root.background = drawable
                     } catch (e: IllegalArgumentException) {
                         // Handle the situation where the color string is not valid (optional)
                     }
