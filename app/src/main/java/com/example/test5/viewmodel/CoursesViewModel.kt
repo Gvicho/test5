@@ -4,14 +4,15 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.homework17_leacture20.data.remote.Network
+import com.example.homework17_leacture20.data.remote.ResultWrapper
 import com.example.test5.data.model.CoursesResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class CoursesViewModel : ViewModel() {
-    private val _courses = MutableStateFlow<CoursesResponse?>(null)
-    val courses: StateFlow<CoursesResponse?> = _courses
+    private val _courses = MutableStateFlow<ResultWrapper<CoursesResponse>?>(null)
+    val courses: StateFlow<ResultWrapper<CoursesResponse>?> = _courses
 
     init {
         fetchCourses()
@@ -22,14 +23,14 @@ class CoursesViewModel : ViewModel() {
             try {
                 val response = Network.getCoursesAPI.getCourses()
                 if (response.isSuccessful) {
-                    Log.d("tag123","successfull")
-                    _courses.value = response.body()!!
+                    _courses.value = ResultWrapper.Success(response.body()!!)
                 } else {
-                    Log.d("tag123","un - successfull")
-                    // unda gavaxvio wrapershi
+                    Log.d("tag123","unsuccessfully")
+                    _courses.value = ResultWrapper.Error(response.message())
                 }
             } catch (e: Exception) {
                 Log.d("tag123","error")
+                _courses.value = ResultWrapper.Error(e.toString())
             }
         }
     }
