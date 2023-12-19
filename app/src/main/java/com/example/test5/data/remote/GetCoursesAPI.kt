@@ -1,7 +1,7 @@
 package com.example.homework18.remote
 
 
-import com.example.test5.CoursesResponse
+import com.example.test5.data.model.CoursesResponse
 import retrofit2.Response
 import retrofit2.http.GET
 

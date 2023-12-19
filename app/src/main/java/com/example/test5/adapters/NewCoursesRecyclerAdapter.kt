@@ -1,4 +1,4 @@
-package com.example.test5
+package com.example.test5.adapters
 
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.test5.R
+import com.example.test5.data.model.Courses
+import com.example.test5.data.model.IconType
 import com.example.test5.databinding.CourseItem2Binding
-import com.example.test5.databinding.CourseItemBinding
 
 class NewCoursesRecyclerAdapter : ListAdapter<Courses, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
 

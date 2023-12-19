@@ -1,4 +1,4 @@
-package com.example.test5
+package com.example.test5.adapters
 
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.test5.data.model.CourseData
+import com.example.test5.data.model.Courses
 import com.example.test5.databinding.CourseItemBinding
 import com.example.test5.databinding.RecyclerItemBinding
 

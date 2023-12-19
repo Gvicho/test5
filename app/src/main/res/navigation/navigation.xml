@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/coursesFragment"
-        android:name="com.example.test5.CoursesFragment"
+        android:name="com.example.test5.ui.CoursesFragment"
         android:label="fragment_courses"
         tools:layout="@layout/fragment_courses" >
 
     </fragment>
     <fragment
         android:id="@+id/heartFragment"
-        android:name="com.example.test5.HeartFragment"
+        android:name="com.example.test5.ui.HeartFragment"
         android:label="fragment_heart"
         tools:layout="@layout/fragment_heart" />
     <fragment
         android:id="@+id/messagesFragment"
-        android:name="com.example.test5.MessagesFragment"
+        android:name="com.example.test5.ui.MessagesFragment"
         android:label="fragment_messages"
         tools:layout="@layout/fragment_messages" />
 

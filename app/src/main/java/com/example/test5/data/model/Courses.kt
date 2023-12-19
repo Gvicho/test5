@@ -1,4 +1,4 @@
-package com.example.test5
+package com.example.test5.data.model
 
 import com.squareup.moshi.Json
 
@@ -29,13 +29,13 @@ data class Courses(@Json(name = "id")
 
     init {
         iconType = when(_iconType){
-            "settings" ->  IconType.SETTINGS
+            "settings" -> IconType.SETTINGS
             "card" -> IconType.CARD
             else -> IconType.EMPTY
         }
     }
 
-    fun getIconType():IconType{
+    fun getIconType(): IconType {
         return iconType
     }
 }

@@ -1,8 +1,8 @@
-package com.example.test5
+package com.example.test5.ui
 
 import android.os.Bundle
+import com.example.test5.BaseFragment
 
-import com.example.test5.databinding.FragmentCoursesBinding
 import com.example.test5.databinding.FragmentMessagesBinding
 
 
